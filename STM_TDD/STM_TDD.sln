@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29926.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoadBalancerKataTests", "LoadBalancerKataTests\LoadBalancerKataTests.csproj", "{9A20A43E-BE95-41B3-9899-6BCDEC44FF06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadBalancerKata", "LoadBalancerKata\LoadBalancerKata.csproj", "{78F00AD7-0339-49E0-9D5A-314DBFAD80A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9A20A43E-BE95-41B3-9899-6BCDEC44FF06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A20A43E-BE95-41B3-9899-6BCDEC44FF06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A20A43E-BE95-41B3-9899-6BCDEC44FF06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A20A43E-BE95-41B3-9899-6BCDEC44FF06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78F00AD7-0339-49E0-9D5A-314DBFAD80A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78F00AD7-0339-49E0-9D5A-314DBFAD80A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78F00AD7-0339-49E0-9D5A-314DBFAD80A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78F00AD7-0339-49E0-9D5A-314DBFAD80A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6C7177D8-0347-4FDC-9934-37AF5F99DBEC}
+	EndGlobalSection
+EndGlobal
