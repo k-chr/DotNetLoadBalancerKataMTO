@@ -15,16 +15,16 @@ namespace LoadBalancerKataTests
 		[Fact]
 		public void ServerShouldStayEmptyIfHadNoVMsDuringBalancing()
 		{
-			Server server = A(ServerBuilder.Server().WithCapacity(1));
+			var server = A(ServerBuilder.Server().WithCapacity(1));
 
 			Balance(AListOfServersWith(server), AnEmptyListOfVMs());
 			Assert.That(server, HasLoadPercentageOf(0.0d));
 		}
 
 		private void Balance(IEnumerable<Server> servers, IEnumerable<Vm> vms) => new ServerLoadBalancer().Balance(servers, vms);
-		
+
 		private IEnumerable<Server> AListOfServersWith(params Server[] values) => values;
-		
+
 		private IEnumerable<Vm> AnEmptyListOfVMs() => new List<Vm>();
 
 		private Server A(ServerBuilder builder) => builder.Build();
