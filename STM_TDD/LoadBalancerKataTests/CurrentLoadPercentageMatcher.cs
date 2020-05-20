@@ -20,5 +20,6 @@ namespace LoadBalancerKataTests
 			mismatchDescription.AppendText("This server has a load percentage that equals: ").AppendValue(item.CurrentLoadPercentage);
 		
 		public override bool Matches(Server server) => Math.Abs(server.CurrentLoadPercentage - _expectedLoadPercentage) < Epsilon;
+		public static Matcher<Server> HasLoadPercentageOf(double value) => new CurrentLoadPercentageMatcher(value);
 	}
 }
