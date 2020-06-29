@@ -8,6 +8,7 @@ namespace LoadBalancerKataTests
 	public class CurrentLoadPercentageMatcher : Matcher<Server>
 	{
 		private const double Epsilon = 0.001d;
+		private const double Full = 100.0;
 		private readonly double _expectedLoadPercentage;
 		private readonly bool _fullMatch;
 
@@ -29,7 +30,7 @@ namespace LoadBalancerKataTests
 
 		public override bool Matches(Server server)
 		{
-			return _fullMatch ? CompareDoubles(server.CurrentLoadPercentage, server.Capacity) : CompareDoubles(server.CurrentLoadPercentage, _expectedLoadPercentage);
+			return _fullMatch ? CompareDoubles(server.CurrentLoadPercentage, Full) : CompareDoubles(server.CurrentLoadPercentage, _expectedLoadPercentage);
 		}
 
 		private static bool CompareDoubles(double first, double second) => Math.Abs(first - second) < Epsilon;

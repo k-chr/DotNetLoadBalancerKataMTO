@@ -5,6 +5,7 @@ using Xunit;
 using Assert = NHamcrest.XUnit.Assert;
 using static LoadBalancerKataTests.CurrentLoadPercentageMatcher;
 using static LoadBalancerKataTests.ServerBuilder;
+using static LoadBalancerKataTests.VmBuilder;
 namespace LoadBalancerKataTests
 {
 	public class ServerLoadBalancerTest
@@ -27,11 +28,10 @@ namespace LoadBalancerKataTests
 			var server = A(Server().WithCapacity(1));
 			var vm = A(Vm().WithSize(1));
 			Balance(AListOfServersWith(server), AListOfVms(vm));
-			Assert.That(server, CurrentLoadPercentageMatcher.StaysFull());
+			Assert.That(server, StaysFull());
 		}
 
 		private IEnumerable<Vm> AListOfVms(params Vm[] vm) => vm;
-
 
 		private void Balance(IEnumerable<Server> servers, IEnumerable<Vm> vms) => new ServerLoadBalancer().Balance(servers, vms);
 
@@ -40,5 +40,29 @@ namespace LoadBalancerKataTests
 		private IEnumerable<Vm> AnEmptyListOfVMs() => new List<Vm>();
 
 		private Server A(ServerBuilder builder) => builder.Build();
+
+		private Vm A(VmBuilder builder) => builder.Build();
 	}
+
+	internal class VmBuilder
+	{
+		private int _size;
+		public Vm Build()
+		{
+			return new Vm();
+		}
+
+		public static VmBuilder Vm()
+		{
+			return new VmBuilder();
+		}
+
+		public VmBuilder WithSize(int size)
+		{
+			_size = size;
+			return this;
+		}
+	}
+
+
 }
