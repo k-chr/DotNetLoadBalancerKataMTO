@@ -27,8 +27,11 @@ namespace LoadBalancerKataTests
 			var server = A(Server().WithCapacity(1));
 			var vm = A(Vm().WithSize(1));
 			Balance(AListOfServersWith(server), AListOfVms(vm));
-			Assert.That(server, StaysFull());
+			Assert.That(server, CurrentLoadPercentageMatcher.StaysFull());
 		}
+
+		private IEnumerable<Vm> AListOfVms(params Vm[] vm) => vm;
+
 
 		private void Balance(IEnumerable<Server> servers, IEnumerable<Vm> vms) => new ServerLoadBalancer().Balance(servers, vms);
 
