@@ -37,7 +37,7 @@ namespace LoadBalancerKataTests
 			var server = A(Server().WithCapacity(10));
 			var vm = A(Vm().WithSize(5));
 			Balance(AListOfServersWith(server), AListOfVms(vm));
-			Assert.That(server, HasLoadPercentageOf(0.5));
+			Assert.That(server, HasLoadPercentageOf(50.0));
 		}
 
 		private static IEnumerable<Vm> AListOfVms(params Vm[] vm) => vm;
