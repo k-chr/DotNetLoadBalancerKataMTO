@@ -43,26 +43,4 @@ namespace LoadBalancerKataTests
 
 		private Vm A(VmBuilder builder) => builder.Build();
 	}
-
-	internal class VmBuilder
-	{
-		private int _size;
-		public Vm Build()
-		{
-			return new Vm();
-		}
-
-		public static VmBuilder Vm()
-		{
-			return new VmBuilder();
-		}
-
-		public VmBuilder WithSize(int size)
-		{
-			_size = size;
-			return this;
-		}
-	}
-
-
 }
