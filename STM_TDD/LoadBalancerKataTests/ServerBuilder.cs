@@ -6,7 +6,7 @@ namespace LoadBalancerKataTests
 	{
 		private int _capacity;
 
-		public ServerBuilder()
+		private ServerBuilder()
 		{
 
 		}

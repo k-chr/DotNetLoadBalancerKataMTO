@@ -12,7 +12,7 @@ namespace LoadBalancerKataTests
 		private readonly double _expectedLoadPercentage;
 		private readonly bool _fullMatch;
 
-		public CurrentLoadPercentageMatcher(double expectedLoadPercentage) =>
+		private CurrentLoadPercentageMatcher(double expectedLoadPercentage) =>
 			_expectedLoadPercentage = expectedLoadPercentage;
 
 		private CurrentLoadPercentageMatcher(bool full)
