@@ -31,6 +31,15 @@ namespace LoadBalancerKataTests
 			Assert.That(server, StaysFull());
 		}
 
+		[Fact]
+		public void ServerShouldStayNotFullyLoadedIfVMUsesOnlyThePartOfServerResourcesAfterBalancing()
+		{
+			var server = A(Server().WithCapacity(1.0));
+			var vm = A(Vm().WithSize(0.5));
+			Balance(AListOfServersWith(server), AListOfVms(vm));
+			Assert.That(server, HasLoadPercentageOf(0.5));
+		}
+
 		private static IEnumerable<Vm> AListOfVms(params Vm[] vm) => vm;
 
 		private static void Balance(IEnumerable<Server> servers, IEnumerable<Vm> vms) => new ServerLoadBalancer().Balance(servers, vms);
