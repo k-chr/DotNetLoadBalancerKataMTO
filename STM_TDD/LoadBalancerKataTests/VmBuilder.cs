@@ -2,7 +2,7 @@
 
 namespace LoadBalancerKataTests
 {
-	public class VmBuilder
+	public class VmBuilder : IBuilder<Vm>
 	{
 		private int _size;
 		public Vm Build()
