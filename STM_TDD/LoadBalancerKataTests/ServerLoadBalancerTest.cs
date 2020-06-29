@@ -34,8 +34,8 @@ namespace LoadBalancerKataTests
 		[Fact]
 		public void ServerShouldStayNotFullyLoadedIfVMUsesOnlyThePartOfServerResourcesAfterBalancing()
 		{
-			var server = A(Server().WithCapacity(1.0));
-			var vm = A(Vm().WithSize(0.5));
+			var server = A(Server().WithCapacity(10));
+			var vm = A(Vm().WithSize(5));
 			Balance(AListOfServersWith(server), AListOfVms(vm));
 			Assert.That(server, HasLoadPercentageOf(0.5));
 		}
