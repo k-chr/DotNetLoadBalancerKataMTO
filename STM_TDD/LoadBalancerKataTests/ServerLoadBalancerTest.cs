@@ -40,13 +40,13 @@ namespace LoadBalancerKataTests
 			Assert.That(server, HasLoadPercentageOf(50.0));
 		}
 
-		private static IEnumerable<Vm> AListOfVms(params Vm[] vm) => vm;
+		private static ICollection<Vm> AListOfVms(params Vm[] vm) => vm;
 
-		private static void Balance(IEnumerable<Server> servers, IEnumerable<Vm> vms) => new ServerLoadBalancer().Balance(servers, vms);
+		private static void Balance(ICollection<Server> servers, ICollection<Vm> vms) => new ServerLoadBalancer().Balance(servers, vms);
 
-		private static IEnumerable<Server> AListOfServersWith(params Server[] values) => values;
+		private static ICollection<Server> AListOfServersWith(params Server[] values) => values;
 
-		private static IEnumerable<Vm> AnEmptyListOfVMs() => new List<Vm>();
+		private static ICollection<Vm> AnEmptyListOfVMs() => new List<Vm>();
 
 		private static T A<T>(IBuilder<T> builder) => builder.Build();
 	}

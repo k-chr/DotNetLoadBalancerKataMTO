@@ -2,11 +2,11 @@
 {
 	public class Vm
 	{
-		private readonly int _size;
+		public readonly int Size;
 
 		public Vm(in int size)
 		{
-			_size = size;
+			Size = size;
 		}
 	}
 }
