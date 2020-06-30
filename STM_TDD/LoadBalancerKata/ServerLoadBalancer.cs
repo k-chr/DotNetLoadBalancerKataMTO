@@ -13,7 +13,11 @@ namespace LoadBalancerKata
 			{
 				foreach (var server in servers)
 				{
-					server.CurrentLoadPercentage = (vms.First().Size/server.Capacity) * MaxPercentage;
+					foreach (var vm in vms)
+					{
+						server.CurrentLoadPercentage += (vm.Size / server.Capacity) * MaxPercentage;
+						server.Vms.Add(vm);
+					}
 				}
 			}
 		}
