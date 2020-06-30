@@ -40,6 +40,12 @@ namespace LoadBalancerKataTests
 			Assert.That(server, HasLoadPercentageOf(50.0));
 		}
 
+		[Fact]
+		public void ServerWithLargeCapacityShouldContainAllProvidedVMsAfterBalancingAndHaveSpecifiedLoadPercentageRate()
+		{
+			
+		}
+
 		private static ICollection<Vm> AListOfVms(params Vm[] vm) => vm;
 
 		private static void Balance(ICollection<Server> servers, ICollection<Vm> vms) => new ServerLoadBalancer().Balance(servers, vms);
