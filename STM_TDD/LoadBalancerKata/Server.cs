@@ -5,8 +5,8 @@ namespace LoadBalancerKata
 {
 	public class Server
 	{
-		private List<Vm> _vms;
-		public double CurrentLoadPercentage { get; set; }
+		private readonly List<Vm> _vms;
+		public double CurrentLoadPercentage { get; private set; }
 
 		public Server(int capacity)
 		{
@@ -14,13 +14,15 @@ namespace LoadBalancerKata
 			_vms = new List<Vm>();
 		}
 
-		public void AddVm(Vm machine)
-		{
-			if(machine == null) return;
-			_vms.Add(machine);
-		}
-
-		public double Capacity { get;}
+		private double Capacity { get; }
 		public IImmutableList<Vm> Vms => _vms.ToImmutableList();
+		private const double MaxPercentage = 100.0;
+
+		public void AddVm(Vm vm)
+		{
+			if (vm == null) return;
+			CurrentLoadPercentage += (vm.Size / Capacity) * MaxPercentage;
+			_vms.Add(vm);
+		}
 	}
 }
