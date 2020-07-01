@@ -57,6 +57,19 @@ namespace LoadBalancerKataTests
 			Assert.That(server, HasLoadPercentageOf(75.0));
 		}
 
+		[Fact]
+		public void IfTwoServersAreProvidedAndOnlyOneMachineIsAvailableToAssignTheServerWithTheLesserLoadRateShouldReceiveVm()
+		{
+			var serverWithSomeVm = A(Server().WithCapacity(10).Having(A(Vm().WithSize(2))));
+			var emptyServer = A(Server().WithCapacity(10));
+			var vmToBalance = A(Vm().WithSize(5));
+			Balance(AListOfServersWith(serverWithSomeVm, emptyServer), AListOfVms(vmToBalance));
+			Assert.That(serverWithSomeVm.Vms, Not(Has.Item(EqualTo(vmToBalance))));
+			Assert.That(emptyServer.Vms, Has.Item(EqualTo(vmToBalance)));
+			Assert.That(emptyServer, HasLoadPercentageOf(50.0));
+			Assert.That(serverWithSomeVm, HasLoadPercentageOf(20.0));
+		}
+
 		private static ICollection<Vm> AListOfVms(params Vm[] vm) => vm;
 
 		private static void Balance(ICollection<Server> servers, ICollection<Vm> vms) =>
