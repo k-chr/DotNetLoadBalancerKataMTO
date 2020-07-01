@@ -8,7 +8,6 @@ namespace LoadBalancerKataTests
 
 		private VmBuilder()
 		{
-
 		}
 
 		public Vm Build()

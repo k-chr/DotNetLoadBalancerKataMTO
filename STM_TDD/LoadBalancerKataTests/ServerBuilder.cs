@@ -9,7 +9,6 @@ namespace LoadBalancerKataTests
 
 		private ServerBuilder()
 		{
-
 		}
 
 		public ServerBuilder WithCapacity(int capacity)
@@ -25,6 +24,7 @@ namespace LoadBalancerKataTests
 			{
 				server.AddVm(_vm);
 			}
+
 			return server;
 		}
 

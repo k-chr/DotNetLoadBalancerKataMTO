@@ -30,7 +30,9 @@ namespace LoadBalancerKataTests
 
 		public override bool Matches(Server server)
 		{
-			return _fullMatch ? CompareDoubles(server.CurrentLoadPercentage, Full) : CompareDoubles(server.CurrentLoadPercentage, _expectedLoadPercentage);
+			return _fullMatch
+				? CompareDoubles(server.CurrentLoadPercentage, Full)
+				: CompareDoubles(server.CurrentLoadPercentage, _expectedLoadPercentage);
 		}
 
 		private static bool CompareDoubles(double first, double second) => Math.Abs(first - second) < Epsilon;
@@ -38,6 +40,5 @@ namespace LoadBalancerKataTests
 		public static Matcher<Server> HasLoadPercentageOf(double value) => new CurrentLoadPercentageMatcher(value);
 
 		public static IMatcher<Server> StaysFull() => new CurrentLoadPercentageMatcher(true);
-		
-   }
+	}
 }
