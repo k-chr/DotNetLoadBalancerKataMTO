@@ -15,10 +15,7 @@ namespace LoadBalancerKataTests
 		private CurrentLoadPercentageMatcher(double expectedLoadPercentage) =>
 			_expectedLoadPercentage = expectedLoadPercentage;
 
-		private CurrentLoadPercentageMatcher(bool full)
-		{
-			_fullMatch = full;
-		}
+		private CurrentLoadPercentageMatcher(bool full) => _fullMatch = full;
 
 		public override void DescribeTo(IDescription description) =>
 			description.AppendText("This server has a load percentage that equals: ")
@@ -28,12 +25,10 @@ namespace LoadBalancerKataTests
 			mismatchDescription.AppendText("This server has a load percentage that equals: ")
 			   .AppendValue(item.CurrentLoadPercentage);
 
-		public override bool Matches(Server server)
-		{
-			return _fullMatch
+		public override bool Matches(Server server) =>
+			_fullMatch
 				? CompareDoubles(server.CurrentLoadPercentage, Full)
 				: CompareDoubles(server.CurrentLoadPercentage, _expectedLoadPercentage);
-		}
 
 		private static bool CompareDoubles(double first, double second) => Math.Abs(first - second) < Epsilon;
 

@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
 using LoadBalancerKata;
 using NHamcrest;
-using NHamcrest.Core;
 using Xunit;
 using Assert = NHamcrest.XUnit.Assert;
 using static LoadBalancerKataTests.CurrentLoadPercentageMatcher;
+using static LoadBalancerKataTests.ServerVmMatcher;
 using static LoadBalancerKataTests.ServerBuilder;
 using static LoadBalancerKataTests.VmBuilder;
 using static NHamcrest.Is;
@@ -102,9 +100,6 @@ namespace LoadBalancerKataTests
 			Assert.That(secondServer, HasVmsEqualTo(expectedVmsOfSecondServer));
 		}
 
-		public static IMatcher<Server> HasVmsEqualTo(ICollection<Vm> expected) =>
-			new ServerVmMatcher(expected);
-
 		private static ICollection<Vm> AListOfVms(params Vm[] vm) => vm;
 
 		private static void Balance(ICollection<Server> servers, ICollection<Vm> vms) =>
@@ -115,18 +110,5 @@ namespace LoadBalancerKataTests
 		private static ICollection<Vm> AnEmptyListOfVMs() => new List<Vm>();
 
 		private static T A<T>(IBuilder<T> builder) => builder.Build();
-	}
-
-	public class ServerVmMatcher : Matcher<Server>
-	{
-		private readonly ICollection<Vm> _expectedVmsOfServer;
-
-		public ServerVmMatcher(ICollection<Vm> expectedVmsOfServer)
-		{
-			_expectedVmsOfServer = expectedVmsOfServer;
-		}
-
-		public override bool Matches(Server item) => _expectedVmsOfServer.SequenceEqual(item?.Vms ?? new List<Vm>().ToImmutableList());
-
 	}
 }

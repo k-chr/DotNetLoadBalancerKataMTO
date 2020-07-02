@@ -21,7 +21,8 @@ namespace LoadBalancerKata
 			server?.AddVm(vm);
 		}
 
-		private static List<Server> GetServersWithEnoughLoadRateToFitVm(ICollection<Server> servers, Vm vm) => servers.Where(server1 => server1.CanAddVm(vm)).ToList();
+		private static List<Server> GetServersWithEnoughLoadRateToFitVm(ICollection<Server> servers, Vm vm) =>
+			servers.Where(server1 => server1.CanAddVm(vm)).ToList();
 
 		private static Server GetServerOfMinimumLoadRate(ICollection<Server> servers)
 		{
