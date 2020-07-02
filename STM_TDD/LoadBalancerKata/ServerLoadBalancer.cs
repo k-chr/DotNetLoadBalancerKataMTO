@@ -5,8 +5,6 @@ namespace LoadBalancerKata
 {
 	public class ServerLoadBalancer
 	{
-		private const double MaxPercentage = 100.0;
-
 		public void Balance(ICollection<Server> servers, ICollection<Vm> vms)
 		{
 			if (vms.Any())
@@ -15,8 +13,7 @@ namespace LoadBalancerKata
 				{
 					foreach (var vm in vms)
 					{
-						server.CurrentLoadPercentage += (vm.Size / server.Capacity) * MaxPercentage;
-						server.Vms.Add(vm);
+						server.AddVm(vm);
 					}
 				}
 			}
