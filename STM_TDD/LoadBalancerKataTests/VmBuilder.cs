@@ -5,6 +5,12 @@ namespace LoadBalancerKataTests
 	public class VmBuilder : IBuilder<Vm>
 	{
 		private int _size;
+
+		private VmBuilder()
+		{
+
+		}
+
 		public Vm Build()
 		{
 			return new Vm(_size);

@@ -2,7 +2,7 @@
 {
 	public class Server
 	{
-		public double CurrentLoadPercentage;
+		public double CurrentLoadPercentage { get; set; }
 
 		public Server(int capacity)
 		{
