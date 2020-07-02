@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using LoadBalancerKata;
 using NHamcrest;
-using NHamcrest.Core;
 using Xunit;
 using Assert = NHamcrest.XUnit.Assert;
 using static LoadBalancerKataTests.CurrentLoadPercentageMatcher;
+using static LoadBalancerKataTests.ServerBuilder;
 namespace LoadBalancerKataTests
 {
 	public class ServerLoadBalancerTest
@@ -15,10 +15,19 @@ namespace LoadBalancerKataTests
 		[Fact]
 		public void ServerShouldStayEmptyIfHadNoVMsDuringBalancing()
 		{
-			var server = A(ServerBuilder.Server().WithCapacity(1));
+			var server = A(Server().WithCapacity(1));
 
 			Balance(AListOfServersWith(server), AnEmptyListOfVMs());
 			Assert.That(server, HasLoadPercentageOf(0.0d));
+		}
+
+		[Fact]
+		public void ServerShouldStayFullIfHadCapacityForOnlyOneVMDuringBalancing()
+		{
+			var server = A(Server().WithCapacity(1));
+			var vm = A(Vm().WithSize(1));
+			Balance(AListOfServersWith(server), AListOfVms(vm));
+			Assert.That(server, StaysFull());
 		}
 
 		private void Balance(IEnumerable<Server> servers, IEnumerable<Vm> vms) => new ServerLoadBalancer().Balance(servers, vms);
