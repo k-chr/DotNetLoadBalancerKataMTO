@@ -21,5 +21,7 @@ namespace LoadBalancerKataTests
 		{
 			return new Server(_capacity);
 		}
+
+		public static ServerBuilder Server() => new ServerBuilder();
 	}
 }
