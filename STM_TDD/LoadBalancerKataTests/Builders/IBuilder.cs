@@ -1,4 +1,4 @@
-﻿namespace LoadBalancerKataTests
+﻿namespace LoadBalancerKataTests.Builders
 {
 	public interface IBuilder<out T>
 	{

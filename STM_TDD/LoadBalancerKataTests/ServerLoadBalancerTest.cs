@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using LoadBalancerKata;
+using LoadBalancerKataTests.Builders;
 using NHamcrest;
 using Xunit;
 using Assert = NHamcrest.XUnit.Assert;
-using static LoadBalancerKataTests.CurrentLoadPercentageMatcher;
-using static LoadBalancerKataTests.ServerVmMatcher;
-using static LoadBalancerKataTests.ServerBuilder;
-using static LoadBalancerKataTests.VmBuilder;
+using static LoadBalancerKataTests.Matchers.CurrentLoadPercentageMatcher;
+using static LoadBalancerKataTests.Matchers.ServerVmMatcher;
+using static LoadBalancerKataTests.Builders.ServerBuilder;
+using static LoadBalancerKataTests.Builders.VmBuilder;
 using static NHamcrest.Is;
 
 namespace LoadBalancerKataTests
