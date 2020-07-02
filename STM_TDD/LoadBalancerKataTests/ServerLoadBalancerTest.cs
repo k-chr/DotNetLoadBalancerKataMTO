@@ -72,6 +72,16 @@ namespace LoadBalancerKataTests
 			Assert.That(serverWithSomeVm, HasLoadPercentageOf(20.0));
 		}
 
+		[Fact]
+		public void IfServerHasNotEnoughPlaceToFitAnotherVmItShouldHaveTheSameLoadRateAfterBalancing()
+		{
+			var serverWithSomeLargeVm = A(Server().WithCapacity(10).Having(A(Vm().WithSize(9))));
+			var tooLargeVm = A(Vm().WithSize(5));
+			Balance(AListOfServersWith(serverWithSomeLargeVm), AListOfVms(tooLargeVm));
+			Assert.That(serverWithSomeLargeVm.Vms, Not(Has.Item(EqualTo(tooLargeVm))));
+			Assert.That(serverWithSomeLargeVm, HasLoadPercentageOf(90.0));
+		}
+
 		private static ICollection<Vm> AListOfVms(params Vm[] vm) => vm;
 
 		private static void Balance(ICollection<Server> servers, ICollection<Vm> vms) =>
