@@ -11,14 +11,16 @@ namespace LoadBalancerKata
 			{
 				foreach (var vm in vms)
 				{
-					var server = GetServerOfMinimumLoadRate(servers);
-					server.AddVm(vm);
+					var filteredServers = servers.Where(server1 => server1.CanAddVm(vm)).ToList();
+					var server = GetServerOfMinimumLoadRate(filteredServers);
+					server?.AddVm(vm);
 				}
 			}
 		}
 
 		private static Server GetServerOfMinimumLoadRate(ICollection<Server> servers)
 		{
+			if (!servers.Any()) return null;
 			var min = servers.Min(s => s.CurrentLoadPercentage);
 			var server = servers.First(s => s.CurrentLoadPercentage <= min);
 			return server;
