@@ -2,11 +2,10 @@
 {
 	public class Vm
 	{
-		public readonly int Size;
+		public int Size { get; }
 
-		public Vm(in int size)
-		{
-			Size = size;
-		}
+		public Vm(in int size) => Size = size;
+
+		public override string ToString() => $"Virtual Machine of Size {Size}";
 	}
 }

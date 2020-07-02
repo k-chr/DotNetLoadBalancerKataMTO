@@ -10,15 +10,9 @@ namespace LoadBalancerKataTests
 		{
 		}
 
-		public Vm Build()
-		{
-			return new Vm(_size);
-		}
+		public Vm Build() => new Vm(_size);
 
-		public static VmBuilder Vm()
-		{
-			return new VmBuilder();
-		}
+		public static VmBuilder Vm() => new VmBuilder();
 
 		public VmBuilder WithSize(int size)
 		{
