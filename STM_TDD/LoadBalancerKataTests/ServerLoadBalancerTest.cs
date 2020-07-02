@@ -7,6 +7,7 @@ using static LoadBalancerKataTests.CurrentLoadPercentageMatcher;
 using static LoadBalancerKataTests.ServerBuilder;
 using static LoadBalancerKataTests.VmBuilder;
 using static NHamcrest.Is;
+
 namespace LoadBalancerKataTests
 {
 	public class ServerLoadBalancerTest
@@ -58,7 +59,8 @@ namespace LoadBalancerKataTests
 		}
 
 		[Fact]
-		public void IfTwoServersAreProvidedAndOnlyOneMachineIsAvailableToAssignTheServerWithTheLesserLoadRateShouldReceiveVm()
+		public void
+			IfTwoServersAreProvidedAndOnlyOneMachineIsAvailableToAssignTheServerWithTheLesserLoadRateShouldReceiveVm()
 		{
 			var serverWithSomeVm = A(Server().WithCapacity(10).Having(A(Vm().WithSize(2))));
 			var emptyServer = A(Server().WithCapacity(10));
