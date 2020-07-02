@@ -7,16 +7,21 @@ namespace LoadBalancerKata
 	{
 		public void Balance(ICollection<Server> servers, ICollection<Vm> vms)
 		{
-			if (vms.Any())
+			if (!vms.Any()) return;
+			foreach (var vm in vms)
 			{
-				foreach (var vm in vms)
-				{
-					var filteredServers = servers.Where(server1 => server1.CanAddVm(vm)).ToList();
-					var server = GetServerOfMinimumLoadRate(filteredServers);
-					server?.AddVm(vm);
-				}
+				AddVmToServerIfPossible(servers, vm);
 			}
 		}
+
+		private static void AddVmToServerIfPossible(ICollection<Server> servers, Vm vm)
+		{
+			var filteredServers = GetServersWithEnoughLoadRateToFitVm(servers, vm);
+			var server = GetServerOfMinimumLoadRate(filteredServers);
+			server?.AddVm(vm);
+		}
+
+		private static List<Server> GetServersWithEnoughLoadRateToFitVm(ICollection<Server> servers, Vm vm) => servers.Where(server1 => server1.CanAddVm(vm)).ToList();
 
 		private static Server GetServerOfMinimumLoadRate(ICollection<Server> servers)
 		{
