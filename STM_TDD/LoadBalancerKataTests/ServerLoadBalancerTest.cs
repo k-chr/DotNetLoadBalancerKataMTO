@@ -82,6 +82,23 @@ namespace LoadBalancerKataTests
 			Assert.That(serverWithSomeLargeVm, HasLoadPercentageOf(90.0));
 		}
 
+		[Fact]
+		public void BalancingEmptyServersAndSomeListOfVmsShouldResultInNearlyEqualVmDistribution()
+		{
+			var firstServer = A(Server().WithCapacity(8));
+			var secondServer = A(Server().WithCapacity(12));
+			var (vm1, vm2, vm3, vm4, vm5) = (A(Vm().WithSize(3)), A(Vm().WithSize(2)), A(Vm().WithSize(1)),
+				A(Vm().WithSize(5)), A(Vm().WithSize(4)));
+			Balance(AListOfServersWith(firstServer, secondServer), AListOfVms(vm1, vm2, vm3, vm4, vm5));
+			Assert.That(firstServer, HasLoadPercentageOf(87.5));
+			Assert.That(secondServer, HasLoadPercentageOf(66.6666));
+			var expectedVmsOfFirstServer = AListOfVms(vm1, vm5);
+			var expectedVmsOfSecondServer = AListOfVms(vm2, vm3, vm4);
+
+			Assert.That(firstServer, HasVmsEqualTo(expectedVmsOfFirstServer));
+			Assert.That(secondServer, HasVmsEqualTo(expectedVmsOfSecondServer));
+		}
+
 		private static ICollection<Vm> AListOfVms(params Vm[] vm) => vm;
 
 		private static void Balance(ICollection<Server> servers, ICollection<Vm> vms) =>
