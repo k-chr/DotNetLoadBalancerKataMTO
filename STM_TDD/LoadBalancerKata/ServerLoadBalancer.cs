@@ -9,12 +9,11 @@ namespace LoadBalancerKata
 		{
 			if (vms.Any())
 			{
-				foreach (var server in servers)
+				var min = servers.Min(s => s.CurrentLoadPercentage);
+				var server = servers.First(s => s.CurrentLoadPercentage <= min);
+				foreach (var vm in vms)
 				{
-					foreach (var vm in vms)
-					{
-						server.AddVm(vm);
-					}
+					server.AddVm(vm);
 				}
 			}
 		}
