@@ -24,5 +24,7 @@ namespace LoadBalancerKata
 			CurrentLoadPercentage += (vm.Size / Capacity) * MaxPercentage;
 			_vms.Add(vm);
 		}
+
+		public bool CanAddVm(Vm vm) => CurrentLoadPercentage + (vm.Size / Capacity) * MaxPercentage <= MaxPercentage;
 	}
 }
