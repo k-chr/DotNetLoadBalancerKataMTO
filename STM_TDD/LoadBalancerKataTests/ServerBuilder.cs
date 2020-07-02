@@ -2,7 +2,7 @@
 
 namespace LoadBalancerKataTests
 {
-	public class ServerBuilder
+	public class ServerBuilder : IBuilder<Server>
 	{
 		private int _capacity;
 
