@@ -3,7 +3,7 @@ using LoadBalancerKata;
 using NHamcrest;
 using NHamcrest.Core;
 
-namespace LoadBalancerKataTests
+namespace LoadBalancerKataTests.Matchers
 {
 	public class CurrentLoadPercentageMatcher : Matcher<Server>
 	{

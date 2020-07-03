@@ -1,6 +1,6 @@
 ﻿using LoadBalancerKata;
 
-namespace LoadBalancerKataTests
+namespace LoadBalancerKataTests.Builders
 {
 	public class VmBuilder : IBuilder<Vm>
 	{
