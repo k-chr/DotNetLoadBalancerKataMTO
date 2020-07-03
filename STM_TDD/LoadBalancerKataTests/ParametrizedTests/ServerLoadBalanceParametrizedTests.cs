@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using LoadBalancerKata;
-using LoadBalancerKataTests.ParametrizedTests.ClassDatas;
+using LoadBalancerKataTests.ParametrizedTests.ClassData;
 using NHamcrest;
 using static LoadBalancerKataTests.Builders.ServerBuilder;
 using static LoadBalancerKataTests.Builders.VmBuilder;

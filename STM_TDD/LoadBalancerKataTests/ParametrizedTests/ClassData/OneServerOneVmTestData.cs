@@ -4,7 +4,7 @@ using static LoadBalancerKataTests.Builders.ServerBuilder;
 using static LoadBalancerKataTests.Builders.VmBuilder;
 using static LoadBalancerKataTests.ServerLoadBalancerTestBase;
 
-namespace LoadBalancerKataTests.ParametrizedTests.ClassDatas
+namespace LoadBalancerKataTests.ParametrizedTests.ClassData
 {
 	public class OneServerOneVmTestData : IEnumerable<object[]>
 	{
