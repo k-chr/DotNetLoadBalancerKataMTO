@@ -1,4 +1,6 @@
-﻿namespace LoadBalancerKata
+﻿using System.Collections.Generic;
+
+namespace LoadBalancerKata
 {
 	public class Server
 	{
@@ -7,8 +9,10 @@
 		public Server(int capacity)
 		{
 			Capacity = capacity;
+			Vms = new List<Vm>();
 		}
 
 		public double Capacity { get;}
+		public List<Vm> Vms { get; }
 	}
 }
