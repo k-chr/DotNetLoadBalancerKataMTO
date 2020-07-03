@@ -13,6 +13,6 @@ namespace LoadBalancerKataTests
 
 		protected static ICollection<Server> AListOfServersWith(params Server[] values) => values;
 		protected static ICollection<Vm> AnEmptyListOfVMs() => new List<Vm>();
-		protected static T A<T>(IBuilder<T> builder) => builder.Build();
+		public static T A<T>(IBuilder<T> builder) => builder.Build();
 	}
 }
