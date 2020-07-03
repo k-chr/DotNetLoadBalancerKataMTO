@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using LoadBalancerKata;
-using LoadBalancerKataTests.Builders;
-using NHamcrest;
+﻿using NHamcrest;
 using Xunit;
 using Assert = NHamcrest.XUnit.Assert;
 using static LoadBalancerKataTests.Matchers.CurrentLoadPercentageMatcher;
@@ -12,7 +9,7 @@ using static NHamcrest.Is;
 
 namespace LoadBalancerKataTests
 {
-	public class ServerLoadBalancerTest
+	public class ServerLoadBalancerTest : ServerLoadBalancerTestBase
 	{
 		[Fact]
 		public void ItCompiles() => Assert.That(true, Is.True());
@@ -100,16 +97,5 @@ namespace LoadBalancerKataTests
 			Assert.That(firstServer, HasVmsEqualTo(expectedVmsOfFirstServer));
 			Assert.That(secondServer, HasVmsEqualTo(expectedVmsOfSecondServer));
 		}
-
-		private static ICollection<Vm> AListOfVms(params Vm[] vm) => vm;
-
-		private static void Balance(ICollection<Server> servers, ICollection<Vm> vms) =>
-			new ServerLoadBalancer().Balance(servers, vms);
-
-		private static ICollection<Server> AListOfServersWith(params Server[] values) => values;
-
-		private static ICollection<Vm> AnEmptyListOfVMs() => new List<Vm>();
-
-		private static T A<T>(IBuilder<T> builder) => builder.Build();
 	}
 }
